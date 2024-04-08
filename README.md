@@ -1,4 +1,4 @@
-# Active Directory Lab | Add Users With PowerShell
+# Active Directory Home Lab | Add Users With PowerShell
 
 ## [YouTube Demonstration](https://youtu.be/)
 
