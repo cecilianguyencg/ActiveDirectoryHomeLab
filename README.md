@@ -1,53 +1,69 @@
-<h1>Active Directory Lab | Add Users with PowerShell</h1>
+# Active Directory Lab | Add Users With PowerShell
 
- ### [YouTube Demonstration](https://youtu.be/)
+## [YouTube Demonstration](https://youtu.be/)
 
-<h2>Description</h2>
+## Description
 In this lab, I'll walk you through creating an Active Directory (AD) home lab environment using Oracle VirtualBox and how to add users with PowerShell. Two virtual machines will be made - the first is the DC or Domain controller and the second is the client computer that connects to the DC. This lab will also walk through installing Active Directory, setting up a domain server, configuring internet settings, installing RAS/NAT and DHCP, and lastly using PowerShell to add users. This is a great way to get hands-on experience and understand how Active Directory and Windows networking works. 
 <br />
 
+## Languages and Utilities Used
 
-<h2>Languages and Utilities Used</h2>
+- Oracle VirtualBox
+- PowerShell
 
-- <b>Oracle VirtualBox</b> 
-- <b>PowerShell</b>
+## Environments Used
 
-<h2>Environments Used </h2>
+- Windows 10
+- Server 2022
 
-- <b>Windows 10</b>
-- <b>Server 2022</b>
+## Program Walk-Through
 
-<h2>Program walk-through:</h2>
+### Creating the Domain Controller (DC)
 
-<p align="center">
-Creating the Domain Controller (DC): <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Internet Settings:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Install Active Directory and Create Domain Server: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Install RAS/NAT:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Install DHCP:  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Add Users Using PowerShell:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Create Client Machine:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
+1. Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) for your respective platform. Then install the [Extension Pack](https://download.virtualbox.org/virtualbox/7.0.14/Oracle_VM_VirtualBox_Extension_Pack-7.0.14.vbox-extpack).
+2. Download [Windows Server ISO](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022) and [Windows 10 ISO](https://www.microsoft.com/en-us/software-download/windows10).
+3. Open up VirtualBox and click **New** icon to create our first virtual machine, the domain controller. We'll name it **DC**. Select the Windows Server ISO image under
+4. Click on Settings, General, Advanced, change Shared Clipboard and Drag'n'Drop to **Bidirectional**. This lets you copy and paste and drag and drop between your actual computer and virtual machine.
 
+### Internet Settings
+
+1. 
+2. 
+3. 
+4. 
+
+### Install Active Directory and Create Domain Server
+
+1. 
+2. 
+3. 
+4. 
+
+### Install RAS/NAT
+
+1. 
+2. 
+3. 
+4.
+
+### Install DHCP
+
+1. 
+2. 
+3. 
+4. 
+
+### Add Users Using PowerShell
+
+1. 
+2. 
+3. 
+4. 
+
+### Create Client Machine
+
+1. Go back to VirtualBox and click **New** to create a new virtual machine. This will be our client machine.
+2.  
 <!--
  ```diff
 - text in red
