@@ -215,15 +215,57 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 ### Add Users Using PowerShell
 + Before creating a client computer and joining it to the domain, let's first use a PowerShell script to create a whole bunch of users in Active Directory created for instead of doing it manually.
 
-1. Download the file from my GitHub here. 
-2. 
-3. 
-4. 
+1. Open up Edge browser from the toolbar. Download the zip file containing the scripts from my GitHub [here](https://github.com/cecilianguyencg/ActiveDirectoryHomeLab/archive/master.zip) by coping and pasting the link into Edge. 
+
+![Download Zip](https://i.imgur.com/Uke6jil.png)
+
+2. Click the **Download** icon and then the **Show in folder** icon to open up the zip file's location. 
+
+![Zip Location](https://i.imgur.com/TvJkK5v.png)
+
+3. Double-click the Zip, then drag the folder onto the **Desktop** to unzip the file and for easier access when we go into PowerShell. 
+
+![Desktop Zip](https://i.imgur.com/Xdb2sSD.png)
+
+4. In the unzipped folder, double-click the **names.txt** file to open it in Notepad. Add your name to the top of the list, then click **File, Save** then close the file.
+> These list of names were generated using the PowerShell script **Generate-Names-Create_Users.ps1**
+
+![Names](https://i.imgur.com/IqSDU4W.png)
+
+5. Open up **PowerShell** by typing in **powershell** in the search bar in the taskbar. Right-click **Windows PowerShell ISE, Run as administrator**. Click **Yes**. 
+
+![Open PowerShell](https://i.imgur.com/hraTe8m.png)
+
+6. Click the **Folder** icon under **Edit** to open the script. Navigate to the **Desktop** or the location of the unzipped folder previously downloaded, and select **1_CREATE_USERS**.
+> **1_CREATE_USERS** will create about 1,000 new accounts based on the **names.txt** file. When this script is run, it'll create users based on this code. A new Organization Unit will be created called **_USERS** with the **Protect container from accidental deletion box** unchecked. All new users will be added in this OU and the user accounts will all be created to have the password of **Password1**. The **user logon** will be created by looking at the first name initial and joining it with the last name from the **names.txt**.
+
+7. Before running this script, we have to enable the execution of all scripts on this server, otherwise an error will occur. In PowerShell, type then hit **Enter**: `Set-ExecutionPolicy Unrestricted`. Select **Yes to All**.
+
+![Execute](https://i.imgur.com/Kp08vqj.png)
+
+8.  Before running the script, we need to change the directory so that it points to where the list of names is. In my case, I will type then hit **Enter**: `cd C:\users\a-cnguyen\Desktop\ActiveDirectoryHomeLab-main`
+
+![Run Script](https://i.imgur.com/NW6CioN.png)
+
+9.  The directory has now changed and we can click the **green arrow* in the top menu to **Run Script**. Click **Run Once**
+> This scirpt will import the Active Directory module and start creating users. The blue text that shows in PowerShell is a result of line 13 in our script and can be manipulated any way you want, since this is just a visual indicator. PowerShell will repeat this script to create new Users until it's gone through all the names on the **names.txt**. 
+
+![names](https://i.imgur.com/PxOPsFO.png)
+
+10. Open up **Active Directory Users and Computers** to see the newly created **_USERS** OU and all the new users populated inside it. Right-click **_USERS, Find...**.
+11. Change dropdown option **_USERS** to **Entire Directory** and type in your first name then click **Find Now**. Two accounts should show up with your first name, the administrator one we created and one we added to the **names.txt** earlier. In my case, a third account with a first name of Cecilia because it was created from the **Generate-Names-Create-Users** script. Crazy!
+
+![Find](https://i.imgur.com/FFi06kZ.png)
 
 ### Create Client Machine
++ So far, pretty much everuthing is set up. Internet is connected, NICs are st up, domain server with users, NAT/RAS, and DHCP. Last step is to create a Windows 10 virtual machine in VirtualBox so that it can use internal NIC and get its IP address from DHCP server that we configured in our first virtual machine, the Domain Controller (DC).
 
 1. Go back to VirtualBox and click **New** to create a new virtual machine. This will be our client machine.
-2.  
+   + Name: CLIENT1
+   + ISO Image: Windows Server ISO.
+   + Edition: Windows Server 2022 Standard Evaluation (Desktop Experience)
+   + Uncheck Skip Unattended Installation. 
+3.  
 <!--
  ```diff
 - text in red
