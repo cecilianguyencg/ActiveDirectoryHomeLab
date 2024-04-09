@@ -215,7 +215,7 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 ### Add Users Using PowerShell
 + Before creating a client computer and joining it to the domain, let's first use a PowerShell script to create a whole bunch of users in Active Directory created for instead of doing it manually.
 
-1. Download the  
+1. Download the file from my GitHub here. 
 2. 
 3. 
 4. 
