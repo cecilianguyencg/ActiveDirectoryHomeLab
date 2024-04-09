@@ -111,7 +111,7 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 
 ![MYDOMAIN Login](https://i.imgur.com/RMPWi6U.png)
 
-8. Now, we'll create our own dedicated Domain Admin account instead of using the built-in Administrator account. Access this either by clicking:
+7. Now, we'll create our own dedicated Domain Admin account instead of using the built-in Administrator account. Access this either by clicking:
    + **Start** menu, **Windows Administrative Tools** folder, **Active Directory Users and Computers**
    + **Server Manager**, **Tools**, **Active Directory Users and Computers**
 
@@ -119,34 +119,34 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 
 ![ServerUsers](https://i.imgur.com/bpjyfVK.png)
 
-9. Expand the newly created mydomain.com in the left pane, then right-click on it, **New**, **Organization Unit**.
+8. Expand the newly created mydomain.com in the left pane, then right-click on it, **New**, **Organization Unit**.
 > Organizational Units are like folders in the Active Directory.
 
 ![New OU](https://i.imgur.com/ucZKw6x.png)
 
-10. Let's name it **_ADMINS** and uncheck **Protect container from accidental deletion**, then click **OK**.
+9. Let's name it **_ADMINS** and uncheck **Protect container from accidental deletion**, then click **OK**.
 
 ![OU Name](https://i.imgur.com/1yR5YfL.png)
 
-11. Right-click the newly created **_ADMINS** OU, **NEW**, **USER** and enter in **First name, Last name**, and **User Logon name**. Click **Next**. 
+10. Right-click the newly created **_ADMINS** OU, **NEW**, **USER** and enter in **First name, Last name**, and **User Logon name**. Click **Next**. 
 > For the **User logon name**, a common naming convention in many organizations is a- to represent it’s an admin account, and whatever naming convention follows. So in this case, first name initial followed by last name.
 
 ![New User](https://i.imgur.com/h3sO71i.png)
 
-12. Enter in a password and uncheck **User must change password at next logon** and check **Password never expires**. Click **Next** then **Finish**.
+11. Enter in a password and uncheck **User must change password at next logon** and check **Password never expires**. Click **Next** then **Finish**.
 > Since this is a lab environment, it's safe to enable **Password never expires**, but in the real world, you'll want to leave **User must change password at next logon** checked on so the new user can create their own password that only they know. Not even administrators should have access to another user's password.
 
-13. See your new account in the right pane, but it’s not an admin yet. To make it a domain admin, right-click **Properties, Add to a group...**.
+12. See your new account in the right pane, but it’s not an admin yet. To make it a domain admin, right-click **Properties, Add to a group...**.
 ![Add to a group](https://i.imgur.com/rrr7DjV.png)
 
-14. In **Enter the object names to select**, type: domain admins, then click **Check Names** so that it resolves to Domain Admins, indicating it's an existing group. Click **Apply, Ok, Ok**.
+13. In **Enter the object names to select**, type: domain admins, then click **Check Names** so that it resolves to Domain Admins, indicating it's an existing group. Click **Apply, Ok, Ok**.
 ![Domain Admins](https://i.imgur.com/UXTUMWB.png)
 
-15. Now you have your very own domain admin account. To use this, click **Start** menu, **Profile** icon, **Sign out**.
+14. Now you have your very own domain admin account. To use this, click **Start** menu, **Profile** icon, **Sign out**.
 
 ![Sign out](https://i.imgur.com/AKl49Yi.png)
 
-16. Instead of logging into the **Administrator** account, click **Other user** and use your newly created domain admin account. In my case, that's **a-cnguyen**.
+15. Instead of logging into the **Administrator** account, click **Other user** and use your newly created domain admin account. In my case, that's **a-cnguyen**.
 
 ### Install RAS/NAT
 + RAS = remote access server
@@ -262,10 +262,76 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 
 1. Go back to VirtualBox and click **New** to create a new virtual machine. This will be our client machine.
    + Name: CLIENT1
-   + ISO Image: Windows Server ISO.
-   + Edition: Windows Server 2022 Standard Evaluation (Desktop Experience)
-   + Uncheck Skip Unattended Installation. 
-3.  
+   + ISO Image: Windows 10 ISO
+   + Edition: Windows 10 Pro
+   + Uncheck Skip Unattended Installation
+
+![Client](https://i.imgur.com/NNDgwhx.png)
+
+2. Click **Next**, increase Base Memory: 4096 MB, increase Processors: 2, **Next, Next, Finish**.
+3. Click **Settings**, Network, Adapter 1,** and change the default **Attached to: NAT** to **Internal Network**. Click **OK**
+> Instead of using NAT and connecting to our home network, choosen Internal Network so the client machine can get a DHCP address from the Domain Controller (DC).
+
+![Internal Network](https://i.imgur.com/luavjAi.png)
+
+4. Start or double-click **CLIENT1**. The installation window appears, click **Next** and then **Install now**. Click **I don't have a product key** at the bottom.
+5. Select **Windows 10 Pro** then **Next**. Check **I accept the license terms** then **Next**, **Custom: Install Windows only (advanced)**, and then finally **Next**.
+> Make sure to choose Windows 10 Pro because Windows 10 Home can't join a Domain.
+
+![10 Home](https://i.imgur.com/AuEXhRg.png)
+
+6. Select your region, then click **Yes**, choose your keyboard layout, click **Yes**, and then **Skip**.
+7. Choose **Set up for an organizaiton** since this client machine will be joining a domain, then click **Next**.
+
+![organizaiton](https://i.imgur.com/EZAT1XD.png)
+
+8. Click **Domain join instead** towards the bottom of the screen.
+![domain join](https://i.imgur.com/8JPsYMZ.png)
+
+9. Next, it'll ask what name to use. Since this is going to be the local username name, we'll call it: **user**. Enter in a password, confirm password, then enter in answers for security questions.
+10. Continue with the installation, choosing to either accept or deny certain settings, and then installation will begin.
+11. After installation, let's check if the internet is working by opening up **Command Prompt** by typing **cmd** into the search bar in the taskbar.
+12. In command prompt, type `ipconfig` to check for internet settings. 
+
+![ipconfig](https://i.imgur.com/eamvn6g.png)
+
+13. Internet is working so let's **ping** a website like Google by typing `ping google.com` in **Command Prompt**. Google.com resolved, meaning their DNS server is working.
+
+![piing]([https://i.imgur.com/eamvn6g.png](https://i.imgur.com/e7lZNvl.png)
+
+14. We can also ping our domain by typing `mydomain.com` in **Command Prompt**. The ping responds.
+
+![ping mydomain](https://i.imgur.com/S5SrZPY.png)
+
+15. Find the name of your PC in Command Prompt by typing `hostname`.
+
+![hostname](https://i.imgur.com/XggV6nU.png)
+
+16. Let's rename this PC. Right-click **Start Menu, System**. Instead of clicking **Rename this PC**, scroll down and click on **Rename this PC (advanced) so that we can rename the PC and join a domain at the same time.
+
+![rename advanced](https://i.imgur.com/bxTbe9F.png)
+
+17. Don't enter a **Computer description**, instead click **Change** towards the bottom. Let's change Computer name to **CLIENT 1** and under Member of, choose **Domain** and type in **mydomain.com**. 
+
+![computer name domain](https://i.imgur.com/tCIuS2i.png)
+
+18. Click **OK** and then enter in a user name and password that was created on our first virtual machine, the **Domain Controller**. A window will appear indicated this client machine is part of **mydomain.com** domain. Click **OK**, **OK**, then restart for changes to go into effect. 
+
+![permission to join](https://i.imgur.com/otj4uzM.png)
+
+19. Go back to our **DC** VM and open up **DHCP** in the **Server Manager**. Expand **dc.mydomain.com, IPv4, Scope** then click on **Address Leases** to see 1 lease from our **CLIENT1** computer.
+> When you created a client computer, **CLIENT1** and joined it to the network, it reached out to the DHCP server automatically and requested an address. The DHCP server gave it an address and now you see the lease located in the right pane.
+
+![address leases](https://i.imgur.com/5GUFG0d.png)
+
+20. Let's open up **Active Directory Users and Computers** again. Expand **mydomain.com** and click on the **Computers** OU. We can now see that after joining the client computer to the domain, it automatically shows up here and is a member of the domain.
+> If you were to delete CLIENT1 here, and tried to log back into **CLIENT1**, you wouldn't be able to use a normal user account that was created. Since it joined the domain, you can use any accounts to log into the computer.
+
+![Computers](https://i.imgur.com/Wbv8Bbe.png)
+
+21. Going back to our **CLIENT1** VM, click **Other user**. Instead of logging in with the local user account when we made when installing Windows 10, we can use one of the user accounts created on the **Domain Controller**. I logged in with **cnguyen**. Now any user part of **MYDOMAIN** can log into **CLIENT1**.
+
+You've successfully created an Active Directory home lab environment, creating two virtual machines, and adding users with PowerShell. Thank you for joining me on this tutorial walk-through! 😊  
 <!--
  ```diff
 - text in red
