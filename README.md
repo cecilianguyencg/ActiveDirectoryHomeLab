@@ -55,6 +55,7 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 > Installing Guest Additions gives a better experience and speeds up everything.
 
 ![Insert Guest](https://i.imgur.com/pEp9muN.png)
+
 ![CD Drive](https://i.imgur.com/SUML8gU.png) 
 
 ### Internet Settings
@@ -151,7 +152,7 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 ### Install RAS/NAT
 + RAS = remote access server
 + NAT = network address translation
-+ By setting up RAS/NAT, it allows client machines to be on a private virtual network, but still be able to access the internet through the Domain Controller.
++ Setting up RAS/NAT allows client machines to be on a virtual private network or VPN, but still be able to access the internet through the Domain Controller.
 
 
 1. In **Server Manager**, click **Add roles and features**, **Next**, **Next**, **Next**, then select **Remote Access**. 
