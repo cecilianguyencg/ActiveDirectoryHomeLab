@@ -1,7 +1,10 @@
 # Active Directory Home Lab | Add Users With PowerShell
 
+## Video Demonstration
+### [YouTube: Setup Active Directory Home Lab and Adding Users with PowerShell](https://www.youtube.com/watch?v=4CahkQ1Ewko)
+
 ## Description
-In this lab, I'll walk you through creating an Active Directory (AD) home lab environment using Oracle VirtualBox and how to add users with PowerShell. Two virtual machines will be made - the first is the DC or Domain controller which will have 2 NICs or network interface controllers, the first connects to our home internet and the second is connected to a private network that the second virtual machine, which is our client, can connect to. This lab will also walk through installing Active Directory, setting up a domain server, configuring internet settings, installing RAS/NAT and DHCP, and lastly using PowerShell to add users. This is a great way to get hands-on experience and understand how Active Directory and Windows networking works. 
+In this lab, we're going to walk through how to create an Active Directory environment using Oracle VirtualBox and how to add users with PowerShell. Two virtual machines will be made - the first is the DC or Domain controller which will have 2 NICs or network interface controllers, the first connects to our home internet and the second is connected to a private network that the second virtual machine, which is our client, can connect to. We'll also set up a domain server, configure internet settings, install RAS/NAT and DHCP, and lastly use PowerShell to add over 1,000 user accounts. This is a great way to get hands-on experience and understand how Active Directory and Windows networking works. 
 
 ## Languages and Utilities Used
 
@@ -332,7 +335,7 @@ In this lab, I'll walk you through creating an Active Directory (AD) home lab en
 
 21. Going back to our **CLIENT1** VM, click **Other user**. Instead of logging in with the local user account when we installed Windows 10, we can use one of the user accounts created on the **Domain Controller**. I logged in with **cnguyen**. Now any user part of **MYDOMAIN** can log into **CLIENT1**.
 
-You've successfully created an Active Directory home lab environment, creating two virtual machines, and adding users with PowerShell. Thank you for joining me on this tutorial walk-through! 😊  
+You've successfully created an Active Directory home lab environment, created two virtual machines, and added users with PowerShell. Thank you for joining me on this tutorial walk-through! 😊  
 <!--
  ```diff
 - text in red
